@@ -16,7 +16,18 @@ code
   code.xref
     color: inherit
 
+  table.field-list
+    .field-body, .field-name
+      padding-bottom: 0
+
+    /* Hide dt inside field-list for attributes, since it is redundant */
+    /* with the field-name. But keep the dt for its id anchor */
+    .field-body > dl.attribute > dt > *
+      display: none
+
   dl.class:not(.docutils)
+    border-top: 3px solid #333
+
     dd
       margin: 0
 
@@ -25,6 +36,11 @@ code
 
     p
       font-size: 1em
+
+    & > dt .property
+      font-style: normal
+      color: #1E39F6
+      font-weight: bold
 
     & > dd
       margin-left: 0
@@ -37,15 +53,21 @@ code
       padding-left: 0
       padding-right: 0
 
+    dl.docutils dt
+      font-family: unset
+
     & > dt
       font-size: 1.2em
       margin: 8px 0 12px 0
       border-bottom: 1px solid $table-border-color
 
-    & > dd > dl
-      border-top: 1px solid $table-border-color
-      padding-top: 12px
+    & > dd > *
+      border-bottom: 1px solid $table-border-color
+      padding-bottom: 8px
       margin-bottom: 12px
+
+    & > dd > *:last-child
+      border-bottom: 0
 
     dl.attribute > dt > .property:before
       content: '\00A0'
@@ -91,6 +113,7 @@ code
     border: 0
     font-size: 1em
 
+/* Syntax highlighting (Mac Classic theme) */
 .highlight
   /* Comment */
   .c
